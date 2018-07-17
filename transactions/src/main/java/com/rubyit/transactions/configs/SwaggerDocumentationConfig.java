@@ -1,4 +1,4 @@
-package io.swagger.configuration;
+package com.rubyit.transactions.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
