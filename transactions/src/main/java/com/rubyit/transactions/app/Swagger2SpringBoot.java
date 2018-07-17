@@ -1,4 +1,4 @@
-package com.rubyit.transactions.configs;
+package com.rubyit.transactions.app;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;

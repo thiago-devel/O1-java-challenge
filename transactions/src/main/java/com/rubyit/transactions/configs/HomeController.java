@@ -1,4 +1,4 @@
-package com.rubyit.transactions.api.impl;
+package com.rubyit.transactions.configs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

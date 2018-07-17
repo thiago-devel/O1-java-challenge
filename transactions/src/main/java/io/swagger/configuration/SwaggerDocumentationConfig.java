@@ -1,4 +1,4 @@
-package com.rubyit.transactions.configs;
+package io.swagger.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerDocumentationConfig {
 
-    ApiInfo apiInfo() {
+	ApiInfo apiInfo() {
         return new ApiInfoBuilder()
             .title("Swagger Transactions API")
             .description("Transactions API")
@@ -23,7 +23,7 @@ public class SwaggerDocumentationConfig {
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .termsOfServiceUrl("")
             .version("1.0.0")
-            .contact(new Contact("","", ""))
+            .contact(new Contact("Thiago Santana","https://github.com/thiago-devel", "thiago.braga.santana@gmail.com"))
             .build();
     }
 
