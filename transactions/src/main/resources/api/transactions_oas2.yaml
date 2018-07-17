@@ -1,0 +1,83 @@
+swagger: '2.0'
+info:
+  title: (O(1)) Challenge API
+  description: This is the transactions API
+  version: ''
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  Transaction:
+    description: represents a performed transaction
+    properties:
+      amount:
+        description: transaction amount
+        type: number
+      timestamp:
+        description: transaction time in epoch in millis in UTC time zone (this is not current timestamp)
+        type: number
+    required:
+      - amount
+      - timestamp
+    type: object
+  Statistic:
+    description: represents the statistics based on the performed transactions
+    properties:
+      sum:
+        description: is a double specifying the total sum of transaction value in the last 60 seconds
+        type: number
+      avg:
+        description: is a double specifying the average amount of transaction value in the last 60 seconds
+        type: number
+      max:
+        description: is a double specifying single highest transaction value in the last 60 seconds
+        type: number
+      min:
+        description: is a double specifying single lowest transaction value in the last 60 seconds
+        type: number
+      count:
+        description: is a long specifying the total number of transactions happened in the last 60 seconds
+        type: number
+    required:
+      - sum
+      - avg
+      - max
+      - min
+      - count
+    type: object
+paths:
+  /transactions:
+    post:
+      description: This operation is called every time a transaction is made
+      operationId: POST_transactions
+      responses:
+        '201':
+          description: in case of success
+        '204':
+          description: if transaction is older than 60 seconds
+      parameters:
+        - schema:
+            example:
+              amount: 12.3
+              timestamp: 1478192204000
+            $ref: '#/definitions/Transaction'
+          in: body
+          name: body
+          required: true
+  /statistics:
+    get:
+      description: It returns the statistic based on the transactions which happened in the last 60 seconds.
+      operationId: GET_statistics
+      responses:
+        '200':
+          description: ''
+          examples:
+            application/json:
+              sum: 1000
+              avg: 100
+              max: 200
+              min: 50
+              count: 10
+          schema:
+            $ref: '#/definitions/Statistic'
