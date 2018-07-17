@@ -1,0 +1,72 @@
+#%RAML 1.0
+title: (O(1)) Challenge API
+
+description: This is the transactions API
+
+mediaType: application/json
+
+types:
+  Transaction:
+    description: represents a performed transaction
+    properties:
+      amount:
+        type: number
+        description: transaction amount
+        required: true
+      timestamp:
+        type: number
+        description: transaction time in epoch in millis in UTC time zone (this is not current timestamp)
+        required: true
+  Statistic:
+    description: represents the statistics based on the performed transactions
+    properties:
+      sum:
+        type: number
+        description: is a double specifying the total sum of transaction value in the last 60 seconds
+        required: true
+      avg:
+        type: number
+        description: is a double specifying the average amount of transaction value in the last 60 seconds
+        required: true
+      max:
+        type: number
+        description: is a double specifying single highest transaction value in the last 60 seconds
+        required: true
+      min:
+        type: number
+        description: is a double specifying single lowest transaction value in the last 60 seconds
+        required: true
+      count:
+        type: number
+        description: is a long specifying the total number of transactions happened in the last 60 seconds
+        required: true
+
+/transactions:
+  post:
+    description: This operation is called every time a transaction is made
+    body: 
+      type: Transaction
+      example:
+        amount: 12.3
+        timestamp: 1478192204000
+    responses: 
+      201:
+        description: in case of success
+      204:
+        description: if transaction is older than 60 seconds
+        
+
+/statistics:
+  get:
+    description: It returns the statistic based on the transactions which happened in the last 60 seconds.
+    responses: 
+      200:
+        body:
+          application/json:
+            type: Statistic
+            example:
+              sum: 1000
+              avg: 100
+              max: 200
+              min: 50
+              count: 10

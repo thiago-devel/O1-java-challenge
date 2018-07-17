@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.rubyit</groupId>
+	<artifactId>transactions</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>transactions</name>
+	<description>Demo project for Spring Boot</description>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<raml-to-jaxrs-maven-plugin.version>2.0.0</raml-to-jaxrs-maven-plugin.version>
+		
+	</properties>
+
+	<dependencies>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 
+			<plugin>
+				<groupId>com.phoenixnap.oss</groupId>
+				<artifactId>springmvc-raml-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<ramlPath>/src/main/resources/api/transactions.raml</ramlPath>
+					<schemaLocation></schemaLocation>
+					<outputRelativePath>src/main/generated-sources</outputRelativePath>
+					<addTimestampFolder>false</addTimestampFolder>
+					<basePackage>com.rubyit.api.gen</basePackage>
+					<baseUri>/api</baseUri>
+					<generateUnreferencedObjects>true</generateUnreferencedObjects>
+					<generationConfig>
+						<includeAdditionalProperties>false</includeAdditionalProperties>
+					</generationConfig>
+					<seperateMethodsByContentType>false</seperateMethodsByContentType>
+					<rule>com.phoenixnap.oss.ramlplugin.raml2code.rules.Spring4ControllerStubRule</rule>
+					<ruleConfiguration>			
+					</ruleConfiguration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-springmvc-endpoints</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate-springmvc-endpoints</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+			<plugin> <!-- Instaled from https://github.com/mulesoft-labs/raml-for-jax-rs -->
+	            <groupId>org.raml.jaxrs</groupId>
+	            <artifactId>raml-to-jaxrs-maven-plugin</artifactId>
+	            <version>${raml-to-jaxrs-maven-plugin.version}</version>
+	            <dependencies>
+	                <dependency>
+	                    <groupId>org.raml.jaxrs</groupId>
+	                    <artifactId>jaxrs-code-generator</artifactId>
+	                    <version>${raml-to-jaxrs-maven-plugin.version}</version>
+	                </dependency>
+	            </dependencies>
+	            <configuration>
+	                <ramlFile>src/main/resources/api/transactions.raml</ramlFile>
+	                <!-- <ramlFile>${project.build.resources[0].directory}/types_user_defined.raml</ramlFile>-->
+	                <resourcePackage>com.rubyit.api.resources</resourcePackage>
+	                <modelPackage>com.rubyit.api.model</modelPackage>
+	                <supportPackage>com.rubyit.api.support</supportPackage>
+	                <generateTypesWith>
+	                    <value>jackson</value>
+	                </generateTypesWith>
+	            </configuration>
+	        </plugin>
+		</plugins>
+	</build>
+
+
+</project>
